@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Chatbot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Sidebar: tools -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">✨ AI Chatbot<small>Powered by Google Gemini</small></div>
+
+      <button class="tool" data-action="reset">🔄 New conversation</button>
+      <button class="tool" data-action="history">🕘 Recent chats</button>
+      <button class="tool" data-action="stats">📊 Statistics</button>
+      <button class="tool" data-action="charts">📈 Charts</button>
+      <button class="tool" data-action="models">🧠 Models</button>
+
+      <div class="footer">Pandas · NumPy · Matplotlib · Seaborn</div>
+    </aside>
+
+    <!-- Main chat area -->
+    <main class="main">
+      <header class="topbar">
+        <button id="menuBtn" class="menu" aria-label="Menu">☰</button>
+        <span>Chat</span>
+      </header>
+
+      {% if setup_error %}
+      <div class="banner">⚠️ {{ setup_error }}</div>
+      {% endif %}
+
+      <section id="messages" class="messages" aria-live="polite"></section>
+
+      <form id="chatForm" class="composer">
+        <textarea id="input" rows="1" placeholder="Ask me anything…  (Enter to send)"></textarea>
+        <button type="submit" id="sendBtn">Send</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
